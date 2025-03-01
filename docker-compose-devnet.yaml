@@ -31,7 +31,7 @@ services:
       - coprocessor-network
 
   operator:
-    image: ghcr.io/zippiehq/cartesi-coprocessor-operator:v1.0.1
+    image: operator:latest
     container_name: cartesi-coprocessor-operator
     ports:
       - 127.0.0.1:3033:3033
@@ -46,6 +46,7 @@ services:
     environment:
       ALWAYS_CONSOLE_PUTCHAR: true
       SNAPSHOT_DIR: /operator-snapshots
+      ETHEREUM_ENDPOINT: http://anvil:8545
       LLAMA_SERVER: http://llama-server:8080
       BLS_PRIVATE_KEY: ${OPERATOR_BLS_KEY:-13219903133444082589215719304558031505888625714969126489655808257015621956774}
       IPFS_DAEMON_OFFLINE: ${IPFS_DAEMON_ONLINE-true}
@@ -53,7 +54,7 @@ services:
       - coprocessor-network
 
   setup-operator:
-    image: ghcr.io/zippiehq/cartesi-coprocessor-operator:v1.0.1
+    image: operator:latest
     container_name: cartesi-coprocessor-setup-operator
     depends_on:
       anvil:

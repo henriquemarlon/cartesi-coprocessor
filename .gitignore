@@ -19,3 +19,7 @@ docs/
 
 # Not sure what this folder is for.. so removing for now
 data/
+
+env/
+
+operator1-data/
